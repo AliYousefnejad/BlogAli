@@ -57,7 +57,7 @@ if(isset($_POST['Upbtn'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog-Page</title>
+    <title>BlogAli</title>
     <link rel="stylesheet" href="Style.css?v=1.2">
 </head>
 <body>
