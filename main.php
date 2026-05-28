@@ -61,6 +61,9 @@ if(isset($_POST['Upbtn'])){
     <link rel="stylesheet" href="Style.css?v=1.2">
 </head>
 <body>
+    <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+
+
     <?php if($message != ""): ?>
         <div class="welcome-msg">
             <?php echo $message; ?>
@@ -95,5 +98,6 @@ if(isset($_POST['Upbtn'])){
 
     <!-- Style requirment -->
     <script src="script.js"></script>
+    
 </body>
 </html>

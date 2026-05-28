@@ -28,9 +28,12 @@ if(isset($_POST['submit_btn'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authorization</title>
-    <link rel="stylesheet" href="Style.css?v=1.2">
+    <link rel="stylesheet" href="Style.css?v=1.3">
 </head>
 <body class="Auth-page">
+    <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+
+
     <div class="main-wrapper">
         <h2 class="brand-title" style="color: #4CAF50;">BlogAli</h2>
         <div class="form-container">
