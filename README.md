@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚀 BlogAli - Hacker Themed Content Manager
 
 **BlogAli** is a sleek, PHP-powered web application featuring a Matrix-inspired "Hacker" UI. It allows users to authenticate through a stylized terminal interface and securely store stories or text files in a persistent database.
@@ -45,4 +44,3 @@ The application uses a relational database to manage users and their content:
 ## 💡 Technical Notes
 *   **Security:** If you attempt to access `main.php` directly without logging in, the system will automatically redirect you to the authorization page.
 *   **Developed for educational purposes.** Happy Coding! 💻
->>>>>>> bbb1fea (Update readme with database and logout features)
