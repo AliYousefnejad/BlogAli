@@ -1,26 +1,51 @@
 <?php
 require_once 'classes.php';
+require_once 'DB.php';
 session_start();
 
 $message = "";
 $color = "green";
 $icon = "\u{2705}";
 
-if(isset($_POST['submit_btn'])){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if (isset($_POST['submit_btn'])) {
 
-    if(!empty(trim($username)) && !empty(trim($password)) && strlen($password) > 7){
-        $user = new User($username, 0);
-        Auth::login($user);
-        header("Location: main.php");
-        exit();
-    } else {    
-        $message = "Something went wrong !";
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    $userModel = new UserModel($db);
+    if (empty($username) || empty($password) || strlen($password) <= 7) {
+        $message = "Invalid username or password!";
         $color = "red";
         $icon = "\u{274c}";
+    } else {
+        if ($userModel->findByUserName($username)) {
+
+            if ($userModel->verifyLogin($username, $password)) {
+                $user = new User($username, 0);
+                Auth::login($user);
+                header("Location: main.php");
+                exit();
+            } else {
+                $message = "Wrong username or password!";
+                $color = "red";
+                $icon = "\u{274c}";
+            }
+        } else {
+            if ($userModel->createNewAccount($username, $password)) {
+                $user = new User($username, 0);
+                Auth::login($user);
+                header("Location: main.php");
+                exit();
+            } else {
+                $message = "Could not create account!";
+                $color = "red";
+                $icon = "\u{274c}";
+            }
+
+        }
     }
-} 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +53,7 @@ if(isset($_POST['submit_btn'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authorization</title>
-    <link rel="stylesheet" href="Style.css?v=1.3">
+    <link rel="stylesheet" href="Style.css?v=1.4">
 </head>
 <body class="Auth-page">
     <canvas class="matrix-bg" id="matrixCanvas"></canvas>
@@ -52,7 +77,7 @@ if(isset($_POST['submit_btn'])){
 
 
 
-    <!-- Style requirment -->
+    <!-- Style requirement -->
     <script src="script.js"></script>
 
 </body>
